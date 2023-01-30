@@ -25,7 +25,7 @@ create next table
 
 
 
-create table Binding_details
+create table Binding_Details
 (
     Binding_id int primary key,
     Binding_Name varchar(50)
