@@ -1,0 +1,178 @@
+create database Library_system
+
+
+create table Book_Details
+(
+    ISB_Code int Primary Key,
+    Book_Title varchar(100)
+    Language varchar(10),
+    Binding_id int,
+    No_Copies_Actual int,
+    No_copies_Current int,
+    Category_id int,
+    Publication_year int
+)
+
+
+insert values in the table
+
+
+insert into Book_Details
+values ('001','Programming Concepts','English',2,20,15,2,2006);
+
+create next table
+
+
+
+
+create table Binding_details
+(
+    Binding_id int primary key,
+    Binding_Name varchar(50)
+)
+
+insert values in binding table
+
+
+insert into Binding_Details values
+(
+    1, 'McGraw Hill'
+);
+insert into Binding_Details values
+(
+    2, 'BPB Publication'
+);
+
+creating relationship between book detail and BINDING TABLE
+
+alter table Book_Details
+add constraint Binding_ID_FK foreign key(Binding_id) references
+Binding_Details(Binding_id); 
+
+Creating category table
+
+create category_details
+(
+    category_id int primary key,
+    category_Name varchar(50)
+)
+
+
+insert values in category details tables
+
+insert into Category_Details values (1,'Database');
+insert into Category_Details values (2, 'Programming Language');
+
+creating relationship between Book and category table
+
+alter table Book_Details
+add Constraint Category_id_fk Foreign Key (Category_id) references
+Category_Details(Category_id);
+
+create borrower table
+
+create table Borrower_details
+(
+    Borrower_id int primary key,
+    Book_id int,
+    Borrower_From Date,
+    Borrower_To Date,
+    Actual_Return_Date date,
+    Issued_by int
+
+)
+
+
+inserting some data in the borrower table
+
+insert into Borrower_Details values
+(
+    1,004,'01-Aug-2014','7-Aug-2014','7-Aug-2014',1
+)
+insert into Borrower_Details values
+(
+    2,6,'2-Aug-2014','8-Aug-2014', Null,1
+)
+
+create Staff table
+
+
+Create table Staff_Details
+(
+Staff_Id int primray key,
+Staff_Name varchar(50),
+Password varchar(30),
+Is_Admin binary , 
+Designation varchar(20)
+)
+
+inserting some data in Staff table
+
+
+Insert into Staff_Details values
+(
+    1,'Tarek Hossain' , '1234ali', 0,'Lib_mgr'
+);
+Insert into Staff_Details values
+(
+    2,'Shayaan_Ahmed' , '123SA', 0, 'Lib_Clr'
+);
+
+relationship b/w borrower and Staff table
+
+Alter table Borrower_Details 
+Add Constraint Issued_by_Fk foreign key 
+(Issued_by) references Staff_Details(Staff_Id);
+
+Create Student table
+
+Create table Student_Details 
+(
+    Student_Id varchar(20) Primary key,
+    Student_Name varchar(50), 
+    Gender varchar(10), 
+    Date_of_Birth date,
+    Borrower_Id int,
+    Deportment varchar(20)
+    contact_Number varchar(11)
+)
+
+Insert some data in student table
+
+insert into Student_Details values
+(
+'13-23059-1','Ahmed , Ali', 'Male', '05-Oct-1999', 1,'CSSE',030000090
+)
+
+insert into Student_Details values
+(
+'14-23059-2','Ayaz , Ali', 'Male', '05-Jan-1998', 2,'BS(IT)',030300090
+)
+relationship b/w Student and Borrower table
+
+
+alter table Student_Details 
+add Constraint borrower_id_FK foreign key(Borrower_Id)
+references Borrower_Details(Borrower_id); 
+
+ create shelf table
+
+ create table Shelf_Details
+ (
+    Shelf_id ont primary key,
+    Shelf_No int,
+    Floor_No imt
+ )
+insert some data in the shelf table 
+
+insert into Shelf_Details values
+(
+    1,1,1
+); 
+insert into Shelf_Details values
+(
+    2,2,202
+); 
+
+
+
